@@ -15,9 +15,9 @@
         for(var i = 0; i < arr.length; i++) {
             var item = arr[i];
             li_arr.push('<li>');
-            li_arr.push('< a href="'+ item.jump_src +'">');
-            li_arr.push('< img src="'+ item.img_src +'">');
-            li_arr.push('</ a>');
+            li_arr.push('<a href="'+ item.jump_src +'">');
+            li_arr.push('<img src="'+ item.img_src +'">');
+            li_arr.push('</a>');
             li_arr.push('</li>');
             dotWrapper.appendChild(document.createElement('li'));
         }
@@ -146,7 +146,7 @@
             title_arr.push('<div class="title">');
             title_arr.push('<div class="text">'+arr[i].name+'</div>');
             title_arr.push('<div class="more">');
-            title_arr.push('< a href="">更多&nbsp;&gt;</ a>');
+            title_arr.push('<a href="">更多&nbsp;&gt;</a>');
             title_arr.push('</div>');
             title_arr.push('</div>');
             title_arr.push('<ul class="listView"></ul>');
@@ -192,7 +192,7 @@
 
     function _getList() {
         $.ajax({
-            url: 'data.json',
+            url: '',
             success: function (res) {
                 if (res.code === 0) {
                     _createLi(res.list);
