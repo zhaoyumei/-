@@ -3,7 +3,7 @@
 	left: 0;
 	right: 0;
 	top: 0;
-	bottom: 48px;
+	bottom: 0px;
 	overflow: hidden;
 }
 .bannerBox{
@@ -27,6 +27,7 @@
 	display: block;
 	width: 100%;
 	overflow: hidden;
+	/*text-align: none;*/
 }
 .bannerList img{
 	display: block;
@@ -44,20 +45,16 @@
 .bannerPoint li{
 	display: inline-block;
 	vertical-align: top;
-	width: 5px;
-	height: 5px;
-	background: #000;
+	width: 6px;
+	height: 6px;
+	background: #ffffff;
+	opacity:0.4;
 	border-radius: 50%;
 	margin:0 5px;
 }
-/*产品分类*/
-.productBox{
-	width:100%;
-	height:479px;
-}
-.productBox .productList{
 
+.bannerPoint li.on{
+	opacity:1;
 }
-.productBox .productList .p_type{
 
-}
+
