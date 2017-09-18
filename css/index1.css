@@ -33,7 +33,7 @@
   top: 50%;
   margin-top: -6px;
 }
-.assort .title .more {
+.assort .title .more a{
   color: #b0b1b6;
 }
 .assort .listView {
