@@ -134,10 +134,10 @@
 /*财富分类 */
 ;(function(){
     var oAssort  = document.querySelector('.assort');
-    var aListView;
+    var oListView;
     var arr = [
-        {name:'热门分来',list:[{typename:'111'}]},
-        {name:'haha分类',list:[{typename:'222'},{typename:'333'}]}
+        {name:'热门分来',type:1,list:[{typename:'111'}]},
+        {name:'haha分类',type:2,list:[{typename:'222'},{typename:'333'}]}
     ];
     function _creatType(arr){
         var title_arr = [];
@@ -149,44 +149,42 @@
             title_arr.push('<a href="">更多&nbsp;&gt;</a>');
             title_arr.push('</div>');
             title_arr.push('</div>');
-            title_arr.push('<ul class="listView"></ul>');
+            title_arr.push('<ul class="listView type'+arr[i].type+'"></ul>');
             title_arr.push('</div>');
 
         }
         oAssort.innerHTML = title_arr.join('');
-        aListView = document.querySelectorAll('.listView');
     }
     function _creatListItem(arr){
-        var	listItem = [];
+        var listLength;
         for(var i = 0; i < arr.length; i++){
-            var listLength = (arr[i].list.length);
-            for(var j = 0; j < listLength; j++) {
-                listItem.push('<li class="listItem">');
-                listItem.push('<div class="name">'+arr[i].list[j].typename+'</div>');
-                listItem.push('<div class="content">');
-                listItem.push('<div class="rate">');
-                listItem.push('<div class="num">9.00%</div>');
-                listItem.push('<div class="text">预期年利率</div>');
-                listItem.push('</div>');
-                listItem.push('<div>');
-                listItem.push('<div class="num">75天</div>');
-                listItem.push('<div class="text">项目期限</div>');
-                listItem.push('</div>');
-                listItem.push('<div>');
-                listItem.push('<div class="num">10000份</div>');
-                listItem.push('<div class="text">起购份额</div>');
-                listItem.push('</div>');
-                listItem.push('</div>');
-                listItem.push('<div class="btnWrapper">');
-                listItem.push('<button class="btn">马上投资</button>');
-                listItem.push('</div>');
-                listItem.push('</li>');
-
-                aListView[listLength-1].innerHTML = listItem.join('');
-
-            }
+            var	listItem = [];
+            listLength = (arr[i].list.length);
+            oListView = document.querySelector('.type'+listLength);
+                for(var j = 0; j < listLength; j++) {
+                    listItem.push('<li class="listItem">');
+                    listItem.push('<div class="name">'+arr[i].list[j].typename+'</div>');
+                    listItem.push('<div class="content">');
+                    listItem.push('<div class="rate">');
+                    listItem.push('<div class="num">9.00%</div>');
+                    listItem.push('<div class="text">预期年利率</div>');
+                    listItem.push('</div>');
+                    listItem.push('<div>');
+                    listItem.push('<div class="num">75天</div>');
+                    listItem.push('<div class="text">项目期限</div>');
+                    listItem.push('</div>');
+                    listItem.push('<div>');
+                    listItem.push('<div class="num">10000份</div>');
+                    listItem.push('<div class="text">起购份额</div>');
+                    listItem.push('</div>');
+                    listItem.push('</div>');
+                    listItem.push('<div class="btnWrapper">');
+                    listItem.push('<button class="btn">马上投资</button>');
+                    listItem.push('</div>');
+                    listItem.push('</li>');
+                }
+                oListView.innerHTML = listItem.join('');
         }
-
 
     }
 
@@ -206,3 +204,5 @@
     _creatListItem(arr)
 })()
 ;
+/*
+*/
