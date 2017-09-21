@@ -66,6 +66,9 @@
   font-size: 24px;
   color: #3b3b3b;
 }
+.assort .listView .listItem .content > div .num i{
+  font-size: 18px;
+}
 .assort .listView .listItem .content > div .text {
   margin-top: 12px;
   font-size: 12px;

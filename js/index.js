@@ -1,3 +1,4 @@
+
 /*banner*/
 ;(function(){
     var oBannerBox = document.querySelector('.bannerBox');
@@ -9,7 +10,7 @@
     var timer;/*定时器*/
     var slider;
 
-	/*创建li*/
+    /*创建li*/
     function _createLi(arr) {
         var li_arr = [];
         for(var i = 0; i < arr.length; i++) {
@@ -25,7 +26,7 @@
         dots = dotWrapper.querySelectorAll('li');
     }
 
-	/*初始化BScroll*/
+    /*初始化BScroll*/
     function _initSlider() {
 
         slider = new BScroll(oBannerBox,{
@@ -130,79 +131,116 @@
     _initScroll();
     window.scroll = scroll;
 })()
-
 /*财富分类 */
 ;(function(){
     var oAssort  = document.querySelector('.assort');
-    var oListView;
-    var arr = [
-        {name:'热门分来',type:1,list:[{typename:'111'}]},
-        {name:'haha分类',type:2,list:[{typename:'222'},{typename:'333'}]}
-    ];
-    function _creatType(arr){
-        var title_arr = [];
-        for(var i = 0; i < arr.length; i++) {
-            title_arr.push('<div class="productType">');
-            title_arr.push('<div class="title">');
-            title_arr.push('<div class="text">'+arr[i].name+'</div>');
-            title_arr.push('<div class="more">');
-            title_arr.push('<a href="">更多&nbsp;&gt;</a>');
-            title_arr.push('</div>');
-            title_arr.push('</div>');
-            title_arr.push('<ul class="listView type'+arr[i].type+'"></ul>');
-            title_arr.push('</div>');
-
-        }
-        oAssort.innerHTML = title_arr.join('');
+    var oListView =  document.querySelector('.listView');
+    /*百分数*/
+    function toDou2(n) {
+        var n = n * 100;
+        return n.toFixed(2);
     }
-    function _creatListItem(arr){
-        var listLength;
-        for(var i = 0; i < arr.length; i++){
-            var	listItem = [];
-            listLength = (arr[i].list.length);
-            oListView = document.querySelector('.type'+listLength);
-                for(var j = 0; j < listLength; j++) {
-                    listItem.push('<li class="listItem">');
-                    listItem.push('<div class="name">'+arr[i].list[j].typename+'</div>');
-                    listItem.push('<div class="content">');
-                    listItem.push('<div class="rate">');
-                    listItem.push('<div class="num">9.00%</div>');
-                    listItem.push('<div class="text">预期年利率</div>');
-                    listItem.push('</div>');
-                    listItem.push('<div>');
-                    listItem.push('<div class="num">75天</div>');
-                    listItem.push('<div class="text">项目期限</div>');
-                    listItem.push('</div>');
-                    listItem.push('<div>');
-                    listItem.push('<div class="num">10000份</div>');
-                    listItem.push('<div class="text">起购份额</div>');
-                    listItem.push('</div>');
-                    listItem.push('</div>');
-                    listItem.push('<div class="btnWrapper">');
-                    listItem.push('<button class="btn">马上投资</button>');
-                    listItem.push('</div>');
-                    listItem.push('</li>');
+    function _creatListItem(){
+        // 测试代码
+        /*var data = {
+            status:1,
+            list:[{investName:'yuan',yearRate:0.05,cycleType:1,itemCycle:30,investId:'001'},
+                {investName:'yuan',yearRate:0.033,cycleType:2,itemCycle:30,investId:'021'}]
+        };
+        var arr = data.list;
+        var	listItem = [];
+        if(data.status == 1){
+            for(var i = 0; i < arr.length; i++){
+                listItem.push('<li class="listItem">');
+                listItem.push('<div class="name">'+arr[i].investName+'</div>');
+                listItem.push('<div class="content">');
+                listItem.push('<div class="rate">');
+                listItem.push('<div class="num">'+toDou2(arr[i].yearRate)+'<i>%</i></div>');
+                listItem.push('<div class="text">预期年利率</div>');
+                listItem.push('</div>');
+                listItem.push('<div>');
+                listItem.push('<div class="num">'+arr[i].itemCycle+'<i class="cycleType"></i></div>');
+                listItem.push('<div class="text">项目期限</div>');
+                listItem.push('</div>');
+                listItem.push('<div>');
+                listItem.push('<div class="num">'+arr[i].startBuyLimit+'<i>份</i></div>');
+                listItem.push('<div class="text">起购份额</div>');
+                listItem.push('</div>');
+                listItem.push('</div>');
+                listItem.push('<div class="btnWrapper">');
+                listItem.push('<button class="btn" data-id="'+arr[i].investId+'">马上投资</button>');
+                listItem.push('</div>');
+                listItem.push('</li>');
+            }
+            oListView.innerHTML = listItem.join('');
+            /!*s设置天1 年*!/
+            for(var i = 0; i < arr.length; i++){
+                if(arr[i].cycleType==1){
+                    $('.cycleType').eq(i).html('年');
+                }else if (arr[i].cycleType==2){
+                    $('.cycleType').eq(i).html('月');
+                }else{
+                    $('.cycleType').eq(i).html('天');
                 }
-                oListView.innerHTML = listItem.join('');
-        }
-
-    }
-
-    function _getList() {
+            }
+        }*/
+        /*正文*/
         $.ajax({
-            url: '',
-            success: function (res) {
-                if (res.code === 0) {
-                    _createLi(res.list);
-
+            url:'http://localhost:8080/invests',
+            data:{},
+            type:'GET',
+            success:function(json){
+                var data = $.parseJSON(json);
+                var arr = data.list;
+                var	listItem = [];
+                if(data.status == 1){
+                    for(var i = 0; i < arr.length; i++){
+                        listItem.push('<li class="listItem">');
+                        listItem.push('<div class="name">'+arr[i].investName+'</div>');
+                        listItem.push('<div class="content">');
+                        listItem.push('<div class="rate">');
+                        listItem.push('<div class="num">'+toDou2(arr[i].yearRate)+'<i>%</i></div>');
+                        listItem.push('<div class="text">预期年利率</div>');
+                        listItem.push('</div>');
+                        listItem.push('<div>');
+                        listItem.push('<div class="num">'+arr[i].itemCycle+'<i class="cycleType"></i></div>');
+                        listItem.push('<div class="text">项目期限</div>');
+                        listItem.push('</div>');
+                        listItem.push('<div>');
+                        listItem.push('<div class="num">'+arr[i].startBuyLimit+'<i>份</i></div>');
+                        listItem.push('<div class="text">起购份额</div>');
+                        listItem.push('</div>');
+                        listItem.push('</div>');
+                        listItem.push('<div class="btnWrapper">');
+                        listItem.push('<button class="btn" data-id="'+arr[i].investId+'">马上投资</button>');
+                        listItem.push('</div>');
+                        listItem.push('</li>');
+                    }
+                    oListView.innerHTML = listItem.join('');
+                    /*s设置天3 年*/
+                    for(var i = 0; i < arr.length; i++){
+                        if(arr[i].cycleType==1){
+                            $('.cycleType').eq(i).html('年');
+                        }else if (arr[i].cycleType==2){
+                            $('.cycleType').eq(i).html('月');
+                        }else{
+                            $('.cycleType').eq(i).html('天');
+                        }
+                    }
                 }
             }
         })
+    };
+    _creatListItem();
+    /*点击 马上投资*/
+    var aBtn = document.querySelectorAll('.btn');
+    for(var i = 0; i < aBtn.length; i++){
+        aBtn[i].addEventListener('touchstart',function(){
+            var id = this.getAttribute('data-id');
+            window.location.href = 'https://www.maxwon.cn/product/{'+id+'}';
+        },flase);
     }
-
-    _creatType(arr);
-    _creatListItem(arr)
 })()
 ;
 /*
-*/
+ */
