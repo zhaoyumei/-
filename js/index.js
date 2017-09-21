@@ -238,7 +238,7 @@
         aBtn[i].addEventListener('touchstart',function(){
             var id = this.getAttribute('data-id');
             window.location.href = 'https://www.maxwon.cn/product/{'+id+'}';
-        },flase);
+        },false);
     }
 })()
 ;
