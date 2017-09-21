@@ -142,7 +142,7 @@
     }
     function _creatListItem(){
         // 测试代码
-        /*var data = {
+        var data = {
             status:1,
             list:[{investName:'yuan',yearRate:0.05,cycleType:1,itemCycle:30,investId:'001'},
                 {investName:'yuan',yearRate:0.033,cycleType:2,itemCycle:30,investId:'021'}]
@@ -173,7 +173,7 @@
                 listItem.push('</li>');
             }
             oListView.innerHTML = listItem.join('');
-            /!*s设置天1 年*!/
+            /*s设置天1 年*/
             for(var i = 0; i < arr.length; i++){
                 if(arr[i].cycleType==1){
                     $('.cycleType').eq(i).html('年');
@@ -183,7 +183,7 @@
                     $('.cycleType').eq(i).html('天');
                 }
             }
-        }*/
+        }
         /*正文*/
         $.ajax({
             url:'http://localhost:8080/invests',
